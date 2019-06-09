@@ -1,7 +1,7 @@
 package com.brothers.premasiri.resourse.supplierResources.entity;
 
-import com.brothers.premasiri.general.consultation.entity.Enum.Gender;
-import com.brothers.premasiri.general.consultation.entity.Enum.Title;
+import com.brothers.premasiri.resourse.companyResource.entity.Enum.Gender;
+import com.brothers.premasiri.resourse.companyResource.entity.Enum.Title;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

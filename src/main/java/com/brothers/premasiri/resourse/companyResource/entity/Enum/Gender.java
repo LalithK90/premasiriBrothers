@@ -1,4 +1,4 @@
-package com.brothers.premasiri.general.consultation.entity.Enum;
+package com.brothers.premasiri.resourse.companyResource.entity.Enum;
 
 public enum Gender {
     MALE("Male"),
