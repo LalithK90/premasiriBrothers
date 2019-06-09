@@ -1,8 +1,9 @@
 package com.brothers.premasiri.resourse.companyResource.service;
 
-import com.brothers.premasiri.common.interfaces.AbstractService;
+
 import com.brothers.premasiri.resourse.companyResource.dao.EmployeeDao;
 import com.brothers.premasiri.resourse.companyResource.entity.Employee;
+import com.brothers.premasiri.util.interfaces.AbstractService;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;

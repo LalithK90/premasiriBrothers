@@ -1,8 +1,9 @@
 package com.brothers.premasiri.general.Security.service;
 
-import com.brothers.premasiri.common.interfaces.AbstractService;
+
 import com.brothers.premasiri.general.Security.dao.UserDao;
 import com.brothers.premasiri.general.Security.entity.User;
+import com.brothers.premasiri.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;

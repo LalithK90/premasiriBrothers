@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public SecurityConfig(DataSource dataSource, CustomUserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public SecurityConfig(CustomUserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsService = userDetailsService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
@@ -53,42 +53,43 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.
                 authorizeRequests()
                 //Always users can access without login
-                    .antMatchers(
-                            "/index",
-                            "/favicon.ico",
-                            "/img",
-                            "/css",
-                            "/js",
-                            "/font").permitAll()
-                    .antMatchers("/login").permitAll()
-                    .antMatchers("/invoiceProcess").permitAll()
+                .antMatchers(
+                        "/index",
+                        "/favicon.ico",
+                        "/img/**",
+                        "/css/**",
+                        "/js/**",
+                        "/fonts/**",
+                        "/divTool/**",
+                        "/fontawesome/**").permitAll()
+                .antMatchers("/login", "/select/**").permitAll()
 
                 //Need to login for access those are
-                    .antMatchers("/employee/**").hasRole("MANAGER")
-                    .antMatchers("/user/**").hasRole("MANAGER")
-                    .antMatchers("/invoiceProcess/add").hasRole("CHASHIER")
-                    .anyRequest()
-                    .authenticated()
+                .antMatchers("/employee/**").hasRole("MANAGER")
+                .antMatchers("/user/**").hasRole("MANAGER")
+                .antMatchers("/invoiceProcess/add").hasRole("CASHIER")
+                .anyRequest()
+                .authenticated()
                 .and()
                 // Login form
                 .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/mainwindow")
+                .loginPage("/login")
+                .defaultSuccessUrl("/mainWindow")
                 //Username and password for validation
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()
                 //Logout controlling
                 .logout()
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/index")
-                    .and()
-                    .exceptionHandling()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/index")
+                .and()
+                .exceptionHandling()
                 //Cross site disable
                 .and()
-                    .csrf()
+                .csrf()
                 .disable();
    }
 }

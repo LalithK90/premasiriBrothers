@@ -1,4 +1,4 @@
-package com.brothers.premasiri.common.interfaces;
+package com.brothers.premasiri.util.interfaces;
 
 import java.util.List;
 

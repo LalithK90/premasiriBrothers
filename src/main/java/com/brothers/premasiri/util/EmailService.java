@@ -1,4 +1,4 @@
-package com.brothers.premasiri.common.service;
+package com.brothers.premasiri.util;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +61,7 @@ public class EmailService {
 
         // Get the Session object.
         Session session = Session.getInstance(props,
-                new Authenticator() {
+                new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);
                     }
@@ -96,10 +96,9 @@ public class EmailService {
             // Part two is attachment
             messageBodyPart = new MimeBodyPart();
             // set file path to include email
-            String filename = fileName;
-            DataSource source = new FileDataSource(filename);
+            DataSource source = new FileDataSource(fileName);
             messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(filename);
+            messageBodyPart.setFileName(fileName);
             multipart.addBodyPart(messageBodyPart);
 
             // Send the complete message parts

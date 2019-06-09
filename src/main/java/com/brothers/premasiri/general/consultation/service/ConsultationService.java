@@ -1,8 +1,9 @@
 package com.brothers.premasiri.general.consultation.service;
 
-import com.brothers.premasiri.common.interfaces.AbstractService;
+
 import com.brothers.premasiri.general.consultation.dao.ConsultationDao;
 import com.brothers.premasiri.general.consultation.entity.Consultations;
+import com.brothers.premasiri.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;

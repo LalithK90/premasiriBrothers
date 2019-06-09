@@ -1,7 +1,8 @@
 package com.brothers.premasiri.resourse.supplierResources.service;
 
-import com.brothers.premasiri.common.interfaces.AbstractService;
+
 import com.brothers.premasiri.resourse.supplierResources.entity.SupplierContactPerson;
+import com.brothers.premasiri.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
