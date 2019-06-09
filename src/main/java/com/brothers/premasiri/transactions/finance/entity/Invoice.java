@@ -3,8 +3,8 @@ package com.brothers.premasiri.transactions.finance.entity;
 
 import com.brothers.premasiri.general.Security.entity.User;
 import com.brothers.premasiri.resourse.companyResource.entity.Customer;
-import com.excellenthealthSolution.pharmacy.transactions.finance.entity.Enum.InvoicePrintOrNot;
-import com.excellenthealthSolution.pharmacy.transactions.finance.entity.Enum.PaymentMethod;
+import com.brothers.premasiri.transactions.finance.entity.Enum.InvoicePrintOrNot;
+import com.brothers.premasiri.transactions.finance.entity.Enum.PaymentMethod;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
