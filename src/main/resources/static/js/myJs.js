@@ -1,4 +1,4 @@
-$(document).ready(function () {
+ $(document).ready(function () {
 
     // set current year to the footer
     document.getElementById("currentYear").innerHTML = new Date().getFullYear();
