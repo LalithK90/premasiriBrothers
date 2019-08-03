@@ -7,8 +7,7 @@ import com.brothers.premasiri.resourse.companyResource.entity.Enum.CivilStatus;
 import com.brothers.premasiri.resourse.companyResource.entity.Enum.Designation;
 import com.brothers.premasiri.resourse.companyResource.entity.Enum.EmployeeStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -22,6 +21,9 @@ import java.util.Objects;
 @Table
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"},allowGetters = true)
 public class Employee {
     @Id
@@ -81,40 +83,5 @@ public class Employee {
     private LocalDate updatedAt;
 
 
-    public Employee() {
-    }
-
-    public Employee(String number, Title title, String name, String callingName, Gender gender, String nic, LocalDate dateOfBirth, CivilStatus civilStatus, String email, String mobile, String land, String address, Designation designation, EmployeeStatus employeeStatus, LocalDate doassignment, LocalDate createdAt, LocalDate updatedAt) {
-        this.number = number;
-        this.title = title;
-        this.name = name;
-        this.callingName = callingName;
-        this.gender = gender;
-        this.nic = nic;
-        this.dateOfBirth = dateOfBirth;
-        this.civilStatus = civilStatus;
-        this.email = email;
-        this.mobile = mobile;
-        this.land = land;
-        this.address = address;
-        this.designation = designation;
-        this.employeeStatus = employeeStatus;
-        this.doassignment = doassignment;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Employee)) return false;
-        Employee employee = (Employee) obj;
-        return Objects.equals(id, employee.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 
 }

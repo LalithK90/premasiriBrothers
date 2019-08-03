@@ -1,45 +1,35 @@
 package com.brothers.premasiri.config;
 
-import com.brothers.premasiri.general.Security.service.CustomUserDetailsService;
+import com.brothers.premasiri.general.Security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import javax.sql.DataSource;
-
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //* @EnableGlobalMethodSecurity(prePostEnabled = true)
-//* using this we can manage method access
-//*   @PreAuthorize("hasAnyRole('ADMIN')") ..........like
-//*
-
-
-    private final CustomUserDetailsService userDetailsService;
-
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserDetailsServiceImpl userDetailsService;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public SecurityConfig(CustomUserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public SecurityConfig(UserDetailsServiceImpl userDetailsService, BCryptPasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
-
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(bCryptPasswordEncoder);
+        authProvider.setPasswordEncoder(passwordEncoder);
         return authProvider;
     }
 
@@ -49,16 +39,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 /*        http.csrf().disable();
         http.authorizeRequests().antMatchers("/").permitAll();*/
 
- //for developing easy to give permission all link
+        //for developing easy to give permission all link
 
-        http.
-                authorizeRequests()
+        http  //To display pdf in same html page i frame
+                .headers()
+                .frameOptions()
+                .sameOrigin()
+                .and()
+                .authorizeRequests()
                 //Always users can access without login
                 .antMatchers(
                         "/index",
@@ -73,7 +66,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //Need to login for access those are
                 .antMatchers("/employee/**").hasRole("MANAGER")
+                .antMatchers("/employee/**").hasRole("MANAGER")
                 .antMatchers("/user/**").hasRole("MANAGER")
+                .antMatchers("/user/**").hasAnyRole("MANAGER", "CASHIER")
                 .antMatchers("/invoiceProcess/add").hasRole("CASHIER")
                 .anyRequest()
                 .authenticated()
@@ -98,5 +93,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf()
                 .disable();
-   }
+
+
+    }
+
 }
