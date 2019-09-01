@@ -1,6 +1,6 @@
 package com.brothers.premasiri.config;
 
-import com.brothers.premasiri.general.Security.service.UserDetailsServiceImpl;
+import com.brothers.premasiri.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
