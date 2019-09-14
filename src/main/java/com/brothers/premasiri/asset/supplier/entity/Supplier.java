@@ -10,7 +10,6 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
-@Table
 @Getter
 @Setter
 @NoArgsConstructor

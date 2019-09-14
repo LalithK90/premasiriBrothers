@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table
 @Getter
 @Setter
 public class Role {
@@ -32,16 +31,5 @@ public class Role {
     public Role(String name) {
         this.roleName = name;
     }
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Role)) return false;
-        Role role = (Role) obj;
-        return Objects.equals(id, role.id);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
