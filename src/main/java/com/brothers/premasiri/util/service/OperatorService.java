@@ -1,4 +1,4 @@
-package com.brothers.premasiri.util;
+package com.brothers.premasiri.util.service;
 
 import org.springframework.stereotype.Service;
 
@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Service
-public class Operator {
+public class OperatorService {
 
     public  BigDecimal multiply(BigDecimal operand1, BigDecimal operand2) {
         return operand1.multiply(operand2).setScale(2, RoundingMode.CEILING);

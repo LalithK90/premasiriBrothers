@@ -1,8 +1,9 @@
 package com.brothers.premasiri.asset.process.generalLedger.service;
 
-import com.excellenthealthSolution.pharmacy.asset.process.generalLedger.dao.LedgerDao;
-import com.excellenthealthSolution.pharmacy.asset.process.generalLedger.entity.Ledger;
-import com.excellenthealthSolution.pharmacy.util.interfaces.AbstractService;
+
+import com.brothers.premasiri.asset.process.generalLedger.dao.LedgerDao;
+import com.brothers.premasiri.asset.process.generalLedger.entity.Ledger;
+import com.brothers.premasiri.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

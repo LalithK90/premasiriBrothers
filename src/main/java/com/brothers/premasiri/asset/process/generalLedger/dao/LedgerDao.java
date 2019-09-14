@@ -1,6 +1,7 @@
 package com.brothers.premasiri.asset.process.generalLedger.dao;
 
-import com.excellenthealthSolution.pharmacy.asset.process.generalLedger.entity.Ledger;
+
+import com.brothers.premasiri.asset.process.generalLedger.entity.Ledger;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

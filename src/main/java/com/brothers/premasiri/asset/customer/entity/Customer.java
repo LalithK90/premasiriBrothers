@@ -2,9 +2,9 @@ package com.brothers.premasiri.asset.customer.entity;
 
 import com.brothers.premasiri.asset.commonAseet.Enum.Gender;
 import com.brothers.premasiri.asset.commonAseet.Enum.Title;
+import com.brothers.premasiri.util.audit.AuditEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -19,12 +19,10 @@ import java.util.Objects;
 @Table
 @Getter
 @Setter
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},allowGetters = true)
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true)
-    private Integer id;
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode( callSuper = true )
+public class Customer extends AuditEntity {
 
     @Column(unique = true)
     @NotNull(message = "This code is already add or enter incorrectly")
@@ -54,38 +52,7 @@ public class Customer {
 
     private String land;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createdAt;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate updatedAt;
 
-    public Customer() {
-     }
 
-    public Customer(String number, Title title, String name, Gender gender, String nic, LocalDate dateOfBirth, String email, String mobile, String land, LocalDate createdAt, LocalDate updatedAt) {
-        this.number = number;
-        this.title = title;
-        this.name = name;
-        this.gender = gender;
-        this.nic = nic;
-        this.dateOfBirth = dateOfBirth;
-        this.email = email;
-        this.mobile = mobile;
-        this.land = land;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Customer)) return false;
-        Customer customer = (Customer) obj;
-        return Objects.equals(id, customer.id);
-}
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

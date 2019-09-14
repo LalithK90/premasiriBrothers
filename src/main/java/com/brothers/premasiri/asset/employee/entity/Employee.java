@@ -6,6 +6,7 @@ import com.brothers.premasiri.asset.commonAseet.Enum.Title;
 import com.brothers.premasiri.asset.commonAseet.Enum.CivilStatus;
 import com.brothers.premasiri.asset.commonAseet.Enum.Designation;
 import com.brothers.premasiri.asset.commonAseet.Enum.EmployeeStatus;
+import com.brothers.premasiri.util.audit.AuditEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,13 +23,8 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},allowGetters = true)
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true)
-    private Integer id;
+@EqualsAndHashCode( callSuper = true )
+public class Employee extends AuditEntity {
 
     @NotNull(message = "Number is required")
     private String number;
@@ -74,12 +70,6 @@ public class Employee {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate doassignment;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createdAt;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate updatedAt;
 
 
 

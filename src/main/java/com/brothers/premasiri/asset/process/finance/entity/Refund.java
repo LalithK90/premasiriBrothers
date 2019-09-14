@@ -1,13 +1,10 @@
 package com.brothers.premasiri.asset.process.finance.entity;
 
-import com.excellenthealthSolution.pharmacy.security.entity.User;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.brothers.premasiri.util.audit.AuditEntity;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -15,45 +12,18 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
-//@JsonIgnoreProperties annotation is a Jackson annotation. Spring Boot uses Jackson for Serializing and Deserialize Java objects to and from JSON.
-@JsonIgnoreProperties(value = "createdAt", allowGetters = true)
-//implements Serializable
-public class Refund {
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+@EqualsAndHashCode( callSuper = true )
+public class Refund extends AuditEntity {
 
-    @OneToOne(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.MERGE,
-                    CascadeType.PERSIST,
-                    CascadeType.REFRESH,
-                    CascadeType.DETACH})
+    @OneToOne( fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     private Invoice invoice;
 
 
-    @Column(name = "amount", precision = 10, scale = 2)
+    @Column( name = "amount", precision = 10, scale = 2 )
     private BigDecimal amount;
 
 
-    @Column(name = "reason", length = 45)
+    @Column( name = "reason", length = 45 )
     private String reason;
-
-    @Column(name = "created_at", nullable = false, updatable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createdAt;
-
-    @ManyToOne(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.MERGE,
-                    CascadeType.PERSIST,
-                    CascadeType.REFRESH,
-                    CascadeType.DETACH})
-    private User user;
-
-
-
 
 }

@@ -1,4 +1,4 @@
-package com.brothers.premasiri.util;
+package com.brothers.premasiri.util.service;
 
 import org.springframework.stereotype.Service;
 

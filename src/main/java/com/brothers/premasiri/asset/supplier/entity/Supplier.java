@@ -1,9 +1,7 @@
 package com.brothers.premasiri.asset.supplier.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.brothers.premasiri.util.audit.AuditEntity;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,11 +15,8 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Supplier {
-    @Id
-    @Column(unique = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+@EqualsAndHashCode( callSuper = true )
+public class Supplier extends AuditEntity {
 
     @Size(min = 4, message = "Provide valid name")
     private String name;
@@ -34,12 +29,5 @@ public class Supplier {
 
     @Email(message = "Provide valid email")
     private String email;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createdAt;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate updatedAt;
-
 
 }

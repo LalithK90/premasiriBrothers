@@ -1,8 +1,9 @@
 package com.brothers.premasiri.asset.process.goodReceivingManagement.service;
 
-import com.excellenthealthSolution.pharmacy.asset.process.goodReceivingManagement.dao.GoodReceivingManagementDao;
-import com.excellenthealthSolution.pharmacy.asset.process.goodReceivingManagement.entity.GoodReceivingManagement;
-import com.excellenthealthSolution.pharmacy.util.interfaces.AbstractService;
+
+import com.brothers.premasiri.asset.process.goodReceivingManagement.dao.GoodReceivingManagementDao;
+import com.brothers.premasiri.asset.process.goodReceivingManagement.entity.GoodReceivingManagement;
+import com.brothers.premasiri.util.interfaces.AbstractService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

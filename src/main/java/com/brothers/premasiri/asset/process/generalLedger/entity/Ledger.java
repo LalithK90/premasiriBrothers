@@ -1,21 +1,18 @@
 package com.brothers.premasiri.asset.process.generalLedger.entity;
 
+import com.brothers.premasiri.util.audit.AuditEntity;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-public class Ledger {
-    @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Column( unique = true )
-    private Integer id;
-
+@EqualsAndHashCode( callSuper = true )
+public class Ledger extends AuditEntity {
+    private String quantity;
     //todo => medicine
 
     //quantity price so many thing
