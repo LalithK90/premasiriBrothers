@@ -10,14 +10,14 @@ import java.util.List;
 
 @Service
 @Transactional
-public class SupplierContactPersonService implements AbstractService<SupplierContactPerson, Integer> {
+public class SupplierContactPersonService implements AbstractService<SupplierContactPerson, Long> {
 
     public List<SupplierContactPerson> findAll() {
         return null;
     }
 
 
-    public SupplierContactPerson findById(Integer id) {
+    public SupplierContactPerson findById(Long id) {
         return null;
     }
 
@@ -27,7 +27,7 @@ public class SupplierContactPersonService implements AbstractService<SupplierCon
     }
 
 
-    public boolean delete(Integer id) {
+    public boolean delete(Long id) {
         return false;
     }
 

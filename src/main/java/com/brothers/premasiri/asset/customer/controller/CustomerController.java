@@ -1,13 +1,5 @@
 package com.brothers.premasiri.asset.customer.controller;/*
-package com.excellenthealthSolution.pharmacy.resourse.companyResource.controller;
 
-import com.excellenthealthSolution.pharmacy.common.service.DateTimeAgeService;
-import com.excellenthealthSolution.pharmacy.common.service.EmailService;
-import com.excellenthealthSolution.pharmacy.general.Security.service.UserService;
-import com.excellenthealthSolution.pharmacy.general.consultation.entity.Enum.Gender;
-import com.excellenthealthSolution.pharmacy.general.consultation.entity.Enum.Title;
-import com.excellenthealthSolution.pharmacy.resourse.companyResource.entity.Customer;
-import com.excellenthealthSolution.pharmacy.resourse.companyResource.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -49,13 +41,13 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String patientView(@PathVariable("id") Integer id, Model model) {
+    public String patientView(@PathVariable("id") Long id, Model model) {
         model.addAttribute("patientDetail", patientService.findById(id));
         return "patient/patient-detail";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editPatientFrom(@PathVariable("id") Integer id, Model model) {
+    public String editPatientFrom(@PathVariable("id") Long id, Model model) {
         model.addAttribute("patient", patientService.findById(id));
         model.addAttribute("newPatient",patientService.findById(id).getNumber());
         model.addAttribute("addStatus", false);
@@ -158,7 +150,7 @@ public class PatientController {
 
 
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
-    public String removePatient(@PathVariable Integer id) {
+    public String removePatient(@PathVariable Long id) {
         patientService.delete(id);
         return "redirect:/patient";
     }

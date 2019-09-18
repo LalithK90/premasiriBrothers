@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface CustomerDao extends JpaRepository<Customer, Integer> {
+public interface CustomerDao extends JpaRepository<Customer, Long> {
     Customer findFirstByOrderByIdDesc();
 
     Customer findByNic(String nic);

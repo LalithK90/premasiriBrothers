@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class RoleService implements AbstractService< Role, Integer> {
+public class RoleService implements AbstractService< Role, Long> {
     private final RoleDao roleDao;
 
     @Autowired
@@ -29,7 +29,7 @@ public class RoleService implements AbstractService< Role, Integer> {
     }
 
 
-    public Role findById(Integer id) {
+    public Role findById(Long id) {
         return roleDao.getOne(id);
     }
 
@@ -39,7 +39,7 @@ public class RoleService implements AbstractService< Role, Integer> {
     }
 
 
-    public boolean delete(Integer id) {
+    public boolean delete(Long id) {
         roleDao.deleteById(id);
         return false;
     }

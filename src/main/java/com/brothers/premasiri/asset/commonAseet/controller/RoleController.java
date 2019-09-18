@@ -1,8 +1,7 @@
-package com.brothers.premasiri.asset.commonAseet.controller;/*
-package com.excellenthealthSolution.pharmacy.resourse.companyResource.controller;
+package com.brothers.premasiri.asset.commonAseet.controller;
 
-import com.excellenthealthSolution.pharmacy.general.Security.entity.Role;
-import com.excellenthealthSolution.pharmacy.general.Security.service.RoleService;
+import com.brothers.premasiri.security.entity.Role;
+import com.brothers.premasiri.security.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,13 +32,13 @@ public class RoleController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String roleView(@PathVariable("id") Integer id, Model model) {
+    public String roleView(@PathVariable("id") Long id, Model model) {
         model.addAttribute("roleDetail", roleService.findById(id));
         return "role/role-detail";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editRoleFrom(@PathVariable("id") Integer id, Model model) {
+    public String editRoleFrom(@PathVariable("id") Long id, Model model) {
         model.addAttribute("role", roleService.findById(id));
         model.addAttribute("addStatus", false);
         return "role/addRole";
@@ -71,7 +70,7 @@ public class RoleController {
     }
 
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
-    public String removeRole(@PathVariable Integer id) {
+    public String removeRole(@PathVariable Long id) {
         roleService.delete(id);
         return "redirect:/role";
     }
@@ -82,4 +81,4 @@ public class RoleController {
         return "role/role-detail";
     }
 }
-*/
+

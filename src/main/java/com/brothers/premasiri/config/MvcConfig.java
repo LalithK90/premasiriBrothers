@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -21,7 +20,7 @@ public class MvcConfig implements WebMvcConfigurer {
         configurer.enable();
     }
 
-/*    @Override
+    @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/")
                 .setViewName("forward:/index");
@@ -29,29 +28,28 @@ public class MvcConfig implements WebMvcConfigurer {
                 .setViewName("login/login");
         registry.addViewController("/mainwindow")
                 .setViewName("mainwindow");
-            }*/
+            }
 
 /*    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //can be impliment like folowing also
         		//registry.addResourceHandler("/resources/**").addResourceLocations("file:/resources/upload/");
         registry.addResourceHandler("/img/**")
-                .addResourceLocations("classpath:/static/img/");
+                .addResourceLocations("classpath:/static/img");
         registry.addResourceHandler("/css/**")
-                .addResourceLocations("classpath:/static/css/");
+                .addResourceLocations("classpath:/static/css");
         registry.addResourceHandler("/js/**")
-                .addResourceLocations("classpath:/static/js/");
-
+                .addResourceLocations("classpath:/static/js");
     }*/
 
-/*    //Bean configuration
+    //Bean configuration
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("/resources/templates/");
         resolver.setSuffix(".html");
         return resolver;
-    }*/
+    }
 // password encode set
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

@@ -60,13 +60,6 @@
                 <div class="row">
                     <div class="container-fluid">
                         <h4>
-                            Blood Group : <span th:text="${employeeDetail.bloodGroup.bloodGroup}"></span>
-                        </h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="container-fluid">
-                        <h4>
                             Email : <span th:text="${employeeDetail.email}"></span>
                         </h4>
                     </div>
@@ -105,7 +98,7 @@
                 <div class="row">
                     <div class="container-fluid">
                         <h4>
-                            Date of Assignment : <span th:text="${employeeDetail.dateOfAssignment}"></span>
+                            Date of Assignment : <span th:text="${employeeDetail.doassignment}"></span>
                         </h4>
                     </div>
                 </div>
@@ -133,7 +126,7 @@
                 <div class="row">
                     <div class="container-fluid">
                         <h4>
-                            Created Date : <span th:text="${employeeDetail.createdAt}"></span>
+                            Created Date : <span th:text="${{employeeDetail.createdAt}}"></span>
                         </h4>
                     </div>
                 </div>

@@ -1,17 +1,12 @@
-package com.brothers.premasiri.asset.employee.controller;/*
-package com.excellenthealthSolution.pharmacy.resourse.companyResource.controller;
+package com.brothers.premasiri.asset.employee.controller;
 
-import com.excellenthealthSolution.pharmacy.common.service.DateTimeAgeService;
-import com.excellenthealthSolution.pharmacy.common.service.EmailService;
-import com.excellenthealthSolution.pharmacy.general.Security.entity.User;
-import com.excellenthealthSolution.pharmacy.general.Security.service.UserService;
-import com.excellenthealthSolution.pharmacy.general.consultation.entity.Enum.Gender;
-import com.excellenthealthSolution.pharmacy.general.consultation.entity.Enum.Title;
-import com.excellenthealthSolution.pharmacy.resourse.companyResource.entity.Employee;
-import com.excellenthealthSolution.pharmacy.resourse.companyResource.entity.Enum.CivilStatus;
-import com.excellenthealthSolution.pharmacy.resourse.companyResource.entity.Enum.Designation;
-import com.excellenthealthSolution.pharmacy.resourse.companyResource.entity.Enum.EmployeeStatus;
-import com.excellenthealthSolution.pharmacy.resourse.companyResource.service.EmployeeService;
+import com.brothers.premasiri.asset.commonAseet.Enum.*;
+import com.brothers.premasiri.asset.employee.entity.Employee;
+import com.brothers.premasiri.asset.employee.service.EmployeeService;
+import com.brothers.premasiri.security.entity.User;
+import com.brothers.premasiri.security.service.UserService;
+import com.brothers.premasiri.util.service.DateTimeAgeService;
+import com.brothers.premasiri.util.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,14 +45,14 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String employeeView(@PathVariable("id") Integer id, Model model) {
+    public String employeeView(@PathVariable("id") Long id, Model model) {
         model.addAttribute("employeeDetail", employeeService.findById(id));
         model.addAttribute("addStatus", false);
         return "employee/employee-detail";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editEmployeeFrom(@PathVariable("id") Integer id, Model model) {
+    public String editEmployeeFrom(@PathVariable("id") Long id, Model model) {
         model.addAttribute("employee", employeeService.findById(id));
         model.addAttribute("newEmployee",employeeService.findById(id).getNumber());
         model.addAttribute("addStatus", false);
@@ -111,12 +106,10 @@ public class EmployeeController {
             User user = userService.findById(userService.findByEmployeeId(employee.getId()));
             if(employee.getEmployeeStatus() != EmployeeStatus.WORKING){
                 user.setEnabled(false);
-                employee.setUpdatedAt(dateTimeAgeService.getCurrentDate());
                 employeeService.persist(employee);
             }
             System.out.println("update working");
             user.setEnabled(true);
-            employee.setUpdatedAt(dateTimeAgeService.getCurrentDate());
             employeeService.persist(employee);
             return "redirect:/employee";
         }
@@ -140,12 +133,10 @@ public class EmployeeController {
             if(isFlag){
                 redirectAttributes.addFlashAttribute("message", "Successfully Update and Email was sent.");
                 redirectAttributes.addFlashAttribute("alertStatus",true);
-                employee.setUpdatedAt(dateTimeAgeService.getCurrentDate());
                 employeeService.persist(employee);
             }else{
                 redirectAttributes.addFlashAttribute("message", "Successfully Add but Email was not sent.");
                 redirectAttributes.addFlashAttribute("alertStatus",false);
-                employee.setUpdatedAt(dateTimeAgeService.getCurrentDate());
                 employeeService.persist(employee);
             }
         }
@@ -169,23 +160,20 @@ public class EmployeeController {
             if(isFlag){
                 redirectAttributes.addFlashAttribute("message", "Successfully Update and Email was sent.");
                 redirectAttributes.addFlashAttribute("alertStatus",true);
-                employee.setCreatedAt(dateTimeAgeService.getCurrentDate());
                 employeeService.persist(employee);
             }else{
                 redirectAttributes.addFlashAttribute("message", "Successfully Add but Email was not sent.");
                 redirectAttributes.addFlashAttribute("alertStatus",false);
-                employee.setCreatedAt(dateTimeAgeService.getCurrentDate());
                 employeeService.persist(employee);
             }
         }
         System.out.println("save no id");
-            employee.setCreatedAt(dateTimeAgeService.getCurrentDate());
             employeeService.persist(employee);
                 return "redirect:/employee";
     }
 
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
-    public String removeEmployee(@PathVariable Integer id) {
+    public String removeEmployee(@PathVariable Long id) {
         employeeService.delete(id);
         return "redirect:/employee";
     }
@@ -197,4 +185,3 @@ public class EmployeeController {
     }
 
 }
-*/

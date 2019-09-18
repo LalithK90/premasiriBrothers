@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface EmployeeDao extends JpaRepository<Employee, Integer> {
+public interface EmployeeDao extends JpaRepository<Employee, Long> {
     Employee findFirstByOrderByIdDesc();
 
 }

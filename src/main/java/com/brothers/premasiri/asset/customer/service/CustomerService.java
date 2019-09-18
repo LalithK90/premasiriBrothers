@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CustomerService implements AbstractService<Customer, Integer> {
+public class CustomerService implements AbstractService<Customer, Long> {
     private final CustomerDao customerDao;
 
     @Autowired
@@ -28,7 +28,7 @@ public class CustomerService implements AbstractService<Customer, Integer> {
     }
 
 
-    public Customer findById(Integer id) {
+    public Customer findById(Long id) {
         return customerDao.getOne(id);
     }
 
@@ -38,7 +38,7 @@ public class CustomerService implements AbstractService<Customer, Integer> {
     }
 
 
-    public boolean delete(Integer id) {
+    public boolean delete(Long id) {
         customerDao.deleteById(id);
         return false;
     }
