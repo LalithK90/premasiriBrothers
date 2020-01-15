@@ -60,6 +60,7 @@ let landRegex = /^([0][\d]{9}])|([\d]{9})$/;
 let nameRegex = /^[a-zA-Z]{2}[ a-zA-Z]+$/;
 let numberRegex = /^([eE][hH][sS][\d]+)$/;
 let invoiceNumberRegex = /^[0-9]{10}$/;
+let priceRegex = /^[0-9]+[.][0-9][0-9]$/;
 let onlyNumberRegex = /^[0-9]*$/;
 
 
@@ -238,6 +239,14 @@ $("#mobile").bind("keyup", function () {
         backgroundColourChangeBad($(this));
     }
 });
+$("#contactMobile").bind("keyup", function () {
+    let mobile = $(this).val();
+    if (mobileRegex.test(mobile)) {
+        backgroundColourChangeGood($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
 $("#land").bind("keyup", function () {
     let land = $(this).val();
     if (landRegex.test(land)) {
@@ -256,7 +265,15 @@ $("#nic").bind("keyup", function () {
     }
 });
 //Name validation
-$("#patientName").bind("keyup", function () {
+$("#name").bind("keyup", function () {
+    let name = $(this).val();
+    if (nameRegex.test(name)) {
+        backgroundColourChangeGood($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
+$("#contactName").bind("keyup", function () {
     let name = $(this).val();
     if (nameRegex.test(name)) {
         backgroundColourChangeGood($(this));
@@ -277,6 +294,34 @@ $("#invoiceNumber").bind("keyup", function () {
 $("#patientNumber").bind("keyup", function () {
     let patientNumber = $(this).val();
     if (invoiceNumberRegex.test(patientNumber)) {
+        backgroundColourChangeGood($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
+
+//Price Validation
+$("#cost").bind("keyup", function () {
+    let cost = $(this).val();
+    if (priceRegex.test(cost)) {
+        backgroundColourChangeGood($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
+
+$("#selling").bind("keyup", function () {
+    let selling = $(this).val();
+    if (priceRegex.test(selling)) {
+        backgroundColourChangeGood($(this));
+    } else {
+        backgroundColourChangeBad($(this));
+    }
+});
+
+$("#amountTendered").bind("keyup", function () {
+    let amount = $(this).val();
+    if (onlyNumberRegex.test(amount)) {
         backgroundColourChangeGood($(this));
     } else {
         backgroundColourChangeBad($(this));
@@ -464,3 +509,30 @@ $("#btnSummaryFind").bind("mouseover", function () {
     }
 });
 //search form date validation - end
+
+//Supplier find when
+$("#supp").bind("change", function () {
+    let attrName = $("#name").attr('id');
+    let attrCode = $("#code").attr('id');
+    if (attrName === 'name') {
+        $("#name").val('');
+        $("#name").attr('id', 'criteria');
+    }
+    if (attrCode === 'code') {
+        $("#code").val('');
+        $("#code").attr('id', 'criteria');
+    }
+    $("#criteria").attr('name', $(this).val());
+
+});
+
+$("#criteria").bind('keyup', function () {
+    let criteriaName = $(this).attr('name');
+    if (criteriaName === 'name') {
+        $("#criteria").attr('id', 'name');
+    }
+    if (criteriaName === 'code') {
+        $("#criteria").attr('id', 'code');
+    }
+});
+
